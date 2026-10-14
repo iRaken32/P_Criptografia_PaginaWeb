@@ -1,0 +1,176 @@
+@property --a{
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+@property --p {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 0%;
+}
+@property --c1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #000;
+}
+@property --c2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #000;
+}
+
+html {
+  --s: 80px;
+  --_g: #0000, var(--c1) 2deg calc(var(--a) - 2deg),#0000 var(--a);
+  background: 
+    conic-gradient(from calc(-45deg  - var(--a)/2) at top    var(--p) left  var(--p),var(--_g)),
+    conic-gradient(from calc(-45deg  - var(--a)/2) at top    var(--p) left  var(--p),var(--_g)),
+    conic-gradient(from calc( 45deg  - var(--a)/2) at top    var(--p) right var(--p),var(--_g)),
+    conic-gradient(from calc( 45deg  - var(--a)/2) at top    var(--p) right var(--p),var(--_g)),
+    conic-gradient(from calc(-135deg - var(--a)/2) at bottom var(--p) left  var(--p),var(--_g)),
+    conic-gradient(from calc(-135deg - var(--a)/2) at bottom var(--p) left  var(--p),var(--_g)),
+    conic-gradient(from calc( 135deg - var(--a)/2) at bottom var(--p) right var(--p),var(--_g)),
+    conic-gradient(from calc( 135deg - var(--a)/2) at bottom var(--p) right var(--p),var(--_g))
+    var(--c2);
+  background-size: calc(2*var(--s)) calc(2*var(--s));
+  animation: m 2s infinite alternate linear;
+  min-height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+}
+
+@keyframes m {
+  0%,15% {
+    --a: 135deg;
+    --p: 20%;
+    --c1: #3B8183;
+    --c2: #FAD089;
+    background-position: 0 0,var(--s) var(--s);
+  }
+  45%,50% {
+    --a: 90deg;
+    --p: 25%;
+    --c1: #3B8183;
+    --c2: #FAD089;
+    background-position: 0 0,var(--s) var(--s);
+  }
+  50.01%,55% {
+    --a: 90deg;
+    --p: 25%;
+    --c2: #3B8183;
+    --c1: #FAD089;
+    background-position: var(--s) 0,0 var(--s);
+  }
+  85%,100% {
+    --a: 135deg;
+    --p: 20%;
+    --c2: #3B8183;
+    --c1: #FAD089;
+    background-position: var(--s) 0,0 var(--s);
+  }
+}
+
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 40px auto; 
+    max-width: 800px; 
+    padding: 40px; 
+    line-height: 1.6; 
+    
+    background-color: rgba(255, 255, 255, 0.93); 
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+}
+
+.header { 
+    display: flex; 
+    align-items: center; 
+    margin-top: 20px; 
+    border-bottom: 2px solid #ccc; 
+    padding-bottom: 10px; 
+}
+.header img { 
+    width: 70px; 
+    height: 80px; 
+    margin-right: 20px; 
+}
+
+.main-title {
+    text-align: center;
+}
+.profile-img { 
+    width: 200px; 
+    display: block; 
+    margin: 20px auto; 
+    border-radius: 5px; 
+}
+
+.section-title { 
+    color: brown; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 5px; 
+    margin-top: 30px;
+}
+
+.social-container {
+    margin-bottom: 20px;
+}
+.social-btn { 
+    display: inline-block; 
+    padding: 10px 15px; 
+    margin: 5px 5px 5px 0; 
+    background: #003366; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    transition: background 0.3s;
+}
+.social-btn:hover { 
+    background: #002244; 
+}
+
+.hobby-gallery { 
+    display: flex; 
+    gap: 15px; 
+    flex-wrap: wrap; 
+    margin-top: 15px; 
+    margin-bottom: 30px;
+}
+.hobby-gallery img { 
+    width: 30%; 
+    min-width: 200px; 
+    border-radius: 8px; 
+    object-fit: cover; 
+}
+
+.action-links { 
+    margin-top: 40px; 
+    text-align: center; 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+}
+.action-btn { 
+    display: inline-block; 
+    padding: 12px 24px; 
+    background: #800000; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.action-btn:hover {
+    background: #500000;
+}
+
+.zoomable-img {
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.zoomable-img.zoom {
+    transform: scale(1.4); /* Crece un 40% al darle clic */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Sombra para resaltar */
+    z-index: 10;
+}
